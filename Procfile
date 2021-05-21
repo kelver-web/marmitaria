@@ -1,1 +1,1 @@
-web: gunicorn marmitaria.wsgi
+web: gunicorn marmitaria.wsgi --log-file -
