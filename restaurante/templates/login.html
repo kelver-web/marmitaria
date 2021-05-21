@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container text-center">
+    <div>
+        <div class="col navMenu">
+            <img src="{% static 'img/logo.png' %}" width="50" height="50"> Marmitaria da casa
+            <h2 class="text-center" >~ Login ~</h2>
+        </div>
+    </div>
+    <div class="mx-auto bg-light" style="width: 360px;">
+        <div class="col" style="text-align: center;">
+            <form action="submit" method="POST">{% csrf_token %}
+                <div class="mx-auto">
+                    <div class="form-group col-12">						  		
+                        <label>Usuario</label>
+                        <input type="text" class="form-control" name="username">
+                    </div>
+                    <div class="form-group col-12">
+                        <label>Senha</label>
+                        <input type="password" class="form-control" name="password">
+                    </div>
+                </div>
+                <div class="row mx-md-n5">
+                    <div class="col py-3 px-md-5">
+                        <button type="submit" class="btn btn-secondary btn-block">Entrar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<p class="text-center">Não tem conta? <a href="/register">Crie sua conta aqui</a></p>
+<div class="text-center">
+    {% for message in messages %}
+        <strong style="color: red">Erro! </strong>{{ message }}
+    {% endfor %}
+</div>
+{% endblock %}

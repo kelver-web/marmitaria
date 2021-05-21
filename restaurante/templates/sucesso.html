@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container text-center">
+    <div>
+        <div class="col navMenu">
+            <img src="{% static 'img/logo.png' %}" width="50" height="50"> Marmitaria da casa
+            <h2 class="text-center" >~ Cadastro de Usuário ~</h2>
+        </div>
+    </div>
+    <div class="mx-auto bg-light" style="width: auto;">
+        <div class="col" style="text-align: center;">
+            <div class="formulario">
+                <a href="/login">
+                    <div class="row mx-md-n5">
+                        <div class="col py-3 px-md-5">
+                            <button type="submit" class="btn btn-secondary btn-block">Login</button>
+                        </div>
+                    </div>
+                </a>
+                <div style="padding-left: 507px; padding-top:20px">
+                    <strong>Sucesso! </strong>{{ messages }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

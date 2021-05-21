@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    table, td, th, tfoot {border:solid 1px #000; padding:5px;}
+    th {background-color:#999;}
+    caption {font-size:x-large;}
+    colgroup {background:#F60;}
+    .coluna1 {background:#F66;}
+    .coluna2  {background:#F33;}
+    .coluna3  {background:#F99;}
+    </style>
+<html>
+	<body data-spy="scroll" data-target=".navbar" data-offset="50">
+	  	<div id="Welcome">
+            <div class="container text-center">
+                <div class="col navMenu">
+                    <img src="{% static 'img/logo.png' %}" width="50" height="50"> Marmitaria da casa
+                    <h2 class="text-center" >~ Seus Pedidos ~</h2>
+                </div>
+            </div>
+		</div>
+		<div class="container">
+			<div class="row" id="Reservation">
+			</div>
+			<div class="row">
+				<div class=" col-lg-12 reserve-container" data-aos="fade-up">
+					<div class="">
+						<div class="row">
+							<div class="col-12">
+                                <table>
+                                    {% for pedido in pedidos %}
+                                        {% if pedido %}
+                                            <tr>
+                                                <th>Nome:</th>
+                                                <th>Proteínas:</th>
+                                                <th>Acompanhamentos:</th>
+                                                <th>Saladas:</th>
+                                                <th>Quantidade:</th>
+                                                <th>Telefone:</th>
+                                                <th>Endereço:</th>
+                                                <th>Valor:</th>
+                                                <th>Observações:</th>
+                                                <th>Data:</th>
+                                                <th>Mudar Pedido</th>
+                                            </tr>
+                                            <tr>
+                                                <td>{{ pedido.nome }}</td>
+                                                <td>{{ pedido.proteinas }}</td>
+                                                <td>{{ pedido.acompanhamentos }}</td>
+                                                <td>{{ pedido.saladas }}</td>
+                                                <td>{{ pedido.quantidade }}</td>
+                                                <td>{{ pedido.telefone }}</td>
+                                                <td>{{ pedido.endereco }}</td>
+                                                <td>{{ pedido.valor }}</td>
+                                                <td>{{ pedido.observacao }}</td>
+                                                <td>{{ pedido.data }}</td>
+                                                <td><a href="{% url 'deletar' pedido.id %}">Excluir</a></td>
+                                            </tr>
+                                        {% endif %}
+                                    {% endfor %}
+                                    <tr>
+                                        <td colspan="11"></td>
+                                    </tr>
+                                    <tr>
+                                        <th class="text-center" colspan="10">Dados do Pedido</th><th class="text-center">Total</th>
+                                    </tr>
+                                    <tr>
+                                        {% for pedido in pedidos %}
+                                            <tr>
+                                                <th colspan="10">{{ pedido.nome }} ----------></th><td>R${{ pedido.soma_pedido }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                    </tr>
+                                    <tr>
+                                        <td colspan="11"></td>
+                                    </tr>
+                                </table>
+                                <div class="row">
+                                    <div class="col-md-12 col-md-offset-12">
+                                        <a href="/">
+                                            <button type="submit" class="btn btn-secondary btn-block">Voltar</button>
+                                        </a>
+                                    </div>
+                                </div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row footer">
+			</div>
+		</div>
+  	</body>
+</html>
+
+{% endblock %}
